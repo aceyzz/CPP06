@@ -14,7 +14,7 @@ Développer une classe `ScalarConverter` capable de convertir une chaîne de car
 - Gérer les pseudo littéraux `-inff`, `+inff`, `nanf` pour les floats et `-inf`, `+inf`, `nan` pour les doubles.
 - Afficher un message informatif lorsqu'une conversion n'est pas possible.
 
-## Implémentation :
+### Implémentation :
 
 [Lien ici](https://github.com/aceyzz/CPP06/tree/main/ex00)
 
