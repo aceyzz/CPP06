@@ -101,7 +101,7 @@ Implémentez une classe de base `Base` qui ne contient qu'un destructeur virtuel
 - L'inclusion de l'en-tête `typeinfo` est interdite.
 - Écrire un programme pour tester que tout fonctionne comme prévu.
 
-### `dynamic_cast` :
+### dynamic_cast :
 
 - `dynamic_cast` est utilisé pour déterminer le type réel d'un objet pointé par un pointeur ou référencé par une référence à une classe de base polymorphique (c'est-à-dire une classe avec au moins une fonction membre virtuelle, comme notre classe `Base` avec son destructeur virtuel).
 - Quand `dynamic_cast` est utilisé avec un pointeur, il retourne un pointeur vers le type cible si l'objet est effectivement de ce type ou un type dérivé, sinon il retourne un pointeur nul.
