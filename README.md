@@ -51,3 +51,41 @@ Ce système de conversion est un exemple de l'application des principes de conve
 
 <br>
 
+## Exercice 01 : Serialization
+
+Implémentez une classe `Serializer` qui ne peut pas être initialisée par l'utilisateur de quelque manière que ce soit. Cette classe doit contenir les méthodes statiques suivantes :
+
+- **`uintptr_t serialize(Data* ptr);`**
+Cette méthode prend en argument un pointeur et le convertit en un entier non signé de type `uintptr_t`.
+
+- `Data* deserialize(uintptr_t raw);`
+Cette méthode prend un paramètre entier non signé et le convertit en un pointeur vers `Data`.
+
+Rédigez un programme pour tester que votre classe fonctionne comme prévu. Vous devez créer une structure `Data` non vide, c'est-à-dire contenant des membres de données.
+
+Utilisez `serialize()` sur l'adresse de l'objet `Data` et passez sa valeur de retour à `deserialize()`. Assurez-vous ensuite que la valeur de retour de `deserialize()` est égale au pointeur original.
+
+N'oubliez pas de fournir les fichiers de votre structure `Data`.
+
+
+### Implémentation
+
+[Lien ici](https://github.com/aceyzz/CPP06/tree/main/ex01)
+
+- `Data.hpp`
+Ce fichier définit une structure `Data` contenant deux membres de données : une chaîne de caractères (`std::string valStr`) et un entier (`int valInt`). Cette structure est utilisée pour la sérialisation et la désérialisation.
+
+- `Serializer.hpp`
+Ce fichier définit la classe `Serializer`, qui contient deux méthodes statiques (`serialize` et `deserialize`) permettant respectivement de convertir un pointeur vers `Data` en un entier non signé de type `uintptr_t` et inversement. Cette classe est conçue pour ne pas être instanciable, comme indiqué par le constructeur privé, le constructeur de copie, l'opérateur d'affectation et le destructeur, tous définis mais non implémentés publiquement.
+
+- `Serializer.cpp`
+Ce fichier implémente les méthodes `serialize` et `deserialize` de la classe `Serializer`. La méthode `serialize` utilise `reinterpret_cast` pour convertir le pointeur vers `Data` en `uintptr_t`, tandis que `deserialize` effectue l'opération inverse pour convertir un `uintptr_t` en pointeur vers `Data`.
+
+Le programme initialise des objets `Data`, les sérialise et les désérialise en utilisant la classe `Serializer`, et affiche les résultats pour vérifier que le processus fonctionne comme attendu. Le programme utilise également les macros de couleur définies dans colors.hpp pour améliorer la visibilité de la sortie.
+
+<br>
+
+---
+
+<br>
+
