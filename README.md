@@ -89,3 +89,34 @@ Le programme initialise des objets `Data`, les sérialise et les désérialise e
 
 <br>
 
+## Exercice 02 : Identifier le type réel
+
+Implémentez une classe de base `Base` qui ne contient qu'un destructeur virtuel public. Créez trois classes vides `A`, `B`, et `C`, qui héritent publiquement de `Base`. Ces quatre classes ne sont pas obligées de suivre la Forme Canonique Orthodoxe.
+
+### Objectif :
+
+- Implémenter la fonction `Base* generate(void);` qui instancie aléatoirement `A`, `B`, ou `C` et retourne l'instance sous forme de pointeur de `Base`. Utilisez la méthode de votre choix pour l'implémentation aléatoire.
+- Implémenter `void identify(Base* p);` qui imprime le type réel de l'objet pointé par `p` : `"A"`, `"B"`, ou `"C"`.
+- Implémenter `void identify(Base& p);` qui imprime le type réel de l'objet référencé par `p` : `"A"`, `"B"`, ou `"C"`. L'utilisation d'un pointeur dans cette fonction est interdite.
+- L'inclusion de l'en-tête `typeinfo` est interdite.
+- Écrire un programme pour tester que tout fonctionne comme prévu.
+
+### `dynamic_cast` :
+
+- `dynamic_cast` est utilisé pour déterminer le type réel d'un objet pointé par un pointeur ou référencé par une référence à une classe de base polymorphique (c'est-à-dire une classe avec au moins une fonction membre virtuelle, comme notre classe `Base` avec son destructeur virtuel).
+- Quand `dynamic_cast` est utilisé avec un pointeur, il retourne un pointeur vers le type cible si l'objet est effectivement de ce type ou un type dérivé, sinon il retourne un pointeur nul.
+- Quand `dynamic_cast` est utilisé avec une référence, il lève une exception de type `std::bad_cast` si le cast échoue.
+- C'est une manière sûre de conversion de types lorsqu'on travaille avec l'héritage, permettant d'assurer que le type vers lequel on cast est bien le type de l'objet.
+
+### Implémentation :
+
+[Lien ici](https://github.com/aceyzz/CPP06/tree/main/ex02)
+
+- La définition de la classe `Base` avec un destructeur virtuel public.
+- Les définitions des classes `A`, `B`, et `C` héritant de `Base`.
+- Les implémentations des fonctions `generate`, `identify(Base* p)`, et `identify(Base& p)` utilisant `dynamic_cast` pour identifier le type réel des objets.
+- Un programme de test illustrant la création aléatoire d'instances de `A`, `B`, ou `C`, et l'identification de leur type réel.
+
+<br>
+
+---
