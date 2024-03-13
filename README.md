@@ -2,6 +2,9 @@
 
 ## Exercice 00 - Conversion of scalar types
 
+<details>
+  <summary>Afficher/Masquer</summary>
+
 ### Objectif :
 Développer une classe `ScalarConverter` capable de convertir une chaîne de caractères représentant littéralement une valeur en C++ (char, int, float, double) vers ces différents types scalaires. Cette classe ne doit pas être instanciable.
 
@@ -45,6 +48,8 @@ Le fichier `main.cpp` démontre l'utilisation de `ScalarConverter` en convertiss
 
 Ce système de conversion est un exemple de l'application des principes de conversion de type en C++, permettant une manipulation flexible et précise des types scalaires à partir de représentations textuelles.
 
+</details>
+
 <br>
 
 ---
@@ -52,6 +57,9 @@ Ce système de conversion est un exemple de l'application des principes de conve
 <br>
 
 ## Exercice 01 : Serialization
+
+<details>
+  <summary>Afficher/Masquer</summary>
 
 Implémentez une classe `Serializer` qui ne peut pas être initialisée par l'utilisateur de quelque manière que ce soit. Cette classe doit contenir les méthodes statiques suivantes :
 
@@ -83,6 +91,8 @@ Ce fichier implémente les méthodes `serialize` et `deserialize` de la classe `
 
 Le programme initialise des objets `Data`, les sérialise et les désérialise en utilisant la classe `Serializer`, et affiche les résultats pour vérifier que le processus fonctionne comme attendu. Le programme utilise également les macros de couleur définies dans colors.hpp pour améliorer la visibilité de la sortie.
 
+</details>
+
 <br>
 
 ---
@@ -90,6 +100,9 @@ Le programme initialise des objets `Data`, les sérialise et les désérialise e
 <br>
 
 ## Exercice 02 : Identifier le type réel
+
+<details>
+  <summary>Afficher/Masquer</summary>
 
 Implémentez une classe de base `Base` qui ne contient qu'un destructeur virtuel public. Créez trois classes vides `A`, `B`, et `C`, qui héritent publiquement de `Base`. Ces quatre classes ne sont pas obligées de suivre la Forme Canonique Orthodoxe.
 
@@ -116,6 +129,8 @@ Implémentez une classe de base `Base` qui ne contient qu'un destructeur virtuel
 - Les définitions des classes `A`, `B`, et `C` héritant de `Base`.
 - Les implémentations des fonctions `generate`, `identify(Base* p)`, et `identify(Base& p)` utilisant `dynamic_cast` pour identifier le type réel des objets.
 - Un programme de test illustrant la création aléatoire d'instances de `A`, `B`, ou `C`, et l'identification de leur type réel.
+
+</details>
 
 <br>
 
