@@ -1,4 +1,13 @@
-<img src="utils/CPP06.png" width= 100%>
+<img src="git_utils/banner.png" width= 100%>
+
+<br>
+
+---
+
+<br>
+
+<details>
+<summary>FRENCH VERSION</summary>
 
 ## Exercice 00 - Conversion of scalar types
 
@@ -134,4 +143,148 @@ Implémentez une classe de base `Base` qui ne contient qu'un destructeur virtuel
 
 <br>
 
+</details>
+
+<br>
+
 ---
+
+<br>
+
+<details>
+<summary>ENGLISH VERSION</summary>
+
+## Exercise 00 - Conversion of scalar types
+
+<details>
+	<summary>Show/Hide</summary>
+
+### Objective:
+Develop a `ScalarConverter` class capable of converting a string representing a literal value in C++ (char, int, float, double) into these different scalar types. This class must not be instantiable.
+
+### Features:
+- The class contains a static method `convert` that takes a string representing a literal value and displays its conversion to char, int, float, and double.
+- Conversions must handle special cases such as non-displayable characters, overflows, and special values (-inf, +inf, nan).
+
+### Constraints:
+- Use only decimal notation except for characters.
+- Handle pseudo-literals `-inff`, `+inff`, `nanf` for floats and `-inf`, `+inf`, `nan` for doubles.
+- Display an informative message when a conversion is not possible.
+
+### Implementation:
+
+[Link here](https://github.com/aceyzz/CPP06/tree/main/ex00)
+
+### `ScalarConverter` Class:
+This class is designed to be non-instantiable by users, as it serves only to convert literal values into different scalar types. It includes a series of private static methods to identify the type of the input value and perform the necessary conversions.
+
+- **`convert` Method**: 
+	The main method that directs the conversion based on the detected type of the input string. It calls the appropriate methods to convert the value to char, int, float, and double.
+
+- **Type Detection**:
+	- `isChar`, `isInt`, `isFloat`, `isDouble`, `isOther`: These methods determine the type of the input string by examining its syntax.
+
+- **Conversion to Specific Types**:
+	- `toChar`: Converts the value to char if possible; displays a message if the character is non-displayable or if the conversion is impossible.
+	- `toInt`: Converts the value to int, handling cases where the conversion is nonsensical or impossible.
+	- `toFloat`: Handles conversions to float, including managing special values like `nanf`, `+inff`, and `-inff`.
+	- `toDouble`: Converts the value to double, with special attention to values like `nan`, `+inf`, and `-inf`.
+	- `toOther`: Handles conversions for strings representing special values that do not directly correspond to the previous types.
+
+### Handling Limits and Special Values:
+The conversion methods account for data type limits to avoid overflows and handle special values according to C++ specifications.
+
+### Usage:
+The class can be used to convert any string representing a C++ literal into char, int, float, and double types, displaying results or appropriate error messages for each type of conversion.
+
+### Program Testing:
+The `main.cpp` file demonstrates the use of `ScalarConverter` by converting command-line arguments and displaying the results. This test covers various cases, including standard literals, non-displayable characters, and special values.
+
+This conversion system is an example of applying type conversion principles in C++, enabling flexible and precise manipulation of scalar types from textual representations.
+
+</details>
+
+<br>
+
+---
+
+<br>
+
+## Exercise 01: Serialization
+
+<details>
+	<summary>Show/Hide</summary>
+
+Implement a `Serializer` class that cannot be initialized by the user in any way. This class must contain the following static methods:
+
+- **`uintptr_t serialize(Data* ptr);`**
+This method takes a pointer as an argument and converts it into an unsigned integer of type `uintptr_t`.
+
+- `Data* deserialize(uintptr_t raw);`
+This method takes an unsigned integer parameter and converts it into a pointer to `Data`.
+
+Write a program to test that your class works as expected. You must create a non-empty `Data` structure, i.e., containing data members.
+
+Use `serialize()` on the address of the `Data` object and pass its return value to `deserialize()`. Then ensure that the return value of `deserialize()` is equal to the original pointer.
+
+Don't forget to provide the files for your `Data` structure.
+
+### Implementation
+
+[Link here](https://github.com/aceyzz/CPP06/tree/main/ex01)
+
+- `Data.hpp`
+This file defines a `Data` structure containing two data members: a string (`std::string valStr`) and an integer (`int valInt`). This structure is used for serialization and deserialization.
+
+- `Serializer.hpp`
+This file defines the `Serializer` class, which contains two static methods (`serialize` and `deserialize`) that respectively convert a pointer to `Data` into an unsigned integer of type `uintptr_t` and vice versa. This class is designed to be non-instantiable, as indicated by the private constructor, copy constructor, assignment operator, and destructor, all defined but not publicly implemented.
+
+- `Serializer.cpp`
+This file implements the `serialize` and `deserialize` methods of the `Serializer` class. The `serialize` method uses `reinterpret_cast` to convert the pointer to `Data` into `uintptr_t`, while `deserialize` performs the reverse operation to convert a `uintptr_t` into a pointer to `Data`.
+
+The program initializes `Data` objects, serializes and deserializes them using the `Serializer` class, and displays the results to verify that the process works as expected. The program also uses color macros defined in `colors.hpp` to enhance output visibility.
+
+</details>
+
+<br>
+
+---
+
+<br>
+
+## Exercise 02: Identify the real type
+
+<details>
+	<summary>Show/Hide</summary>
+
+Implement a base class `Base` that contains only a public virtual destructor. Create three empty classes `A`, `B`, and `C`, which publicly inherit from `Base`. These four classes are not required to follow the Orthodox Canonical Form.
+
+### Objective:
+
+- Implement the function `Base* generate(void);` which randomly instantiates `A`, `B`, or `C` and returns the instance as a `Base` pointer. Use any method of your choice for randomization.
+- Implement `void identify(Base* p);` which prints the real type of the object pointed to by `p`: `"A"`, `"B"`, or `"C"`.
+- Implement `void identify(Base& p);` which prints the real type of the object referenced by `p`: `"A"`, `"B"`, or `"C"`. Using a pointer in this function is prohibited.
+- The inclusion of the `typeinfo` header is prohibited.
+- Write a program to test that everything works as expected.
+
+### dynamic_cast:
+
+- `dynamic_cast` is used to determine the real type of an object pointed to by a pointer or referenced by a reference to a polymorphic base class (i.e., a class with at least one virtual member function, like our `Base` class with its virtual destructor).
+- When `dynamic_cast` is used with a pointer, it returns a pointer to the target type if the object is indeed of that type or a derived type; otherwise, it returns a null pointer.
+- When `dynamic_cast` is used with a reference, it throws a `std::bad_cast` exception if the cast fails.
+- It is a safe way to perform type conversions when working with inheritance, ensuring that the type being cast to is indeed the type of the object.
+
+### Implementation:
+
+[Link here](https://github.com/aceyzz/CPP06/tree/main/ex02)
+
+- The definition of the `Base` class with a public virtual destructor.
+- The definitions of the `A`, `B`, and `C` classes inheriting from `Base`.
+- The implementations of the `generate`, `identify(Base* p)`, and `identify(Base& p)` functions using `dynamic_cast` to identify the real type of objects.
+- A test program illustrating the random creation of instances of `A`, `B`, or `C`, and the identification of their real type.
+
+</details>
+
+<br>
+
+</details>
